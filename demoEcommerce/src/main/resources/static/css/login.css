@@ -1,0 +1,124 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(100deg, #5cd89e7b, #005D68);
+    height: 100vh;
+}
+
+/* Formulario */
+.formulario {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;  /* Se agregó px */
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.formulario h1 {
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid;
+    font-size: 22px;
+}
+
+.formulario form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+/* Campos de entrada */
+.username, .Contraseña {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.username input, .Contraseña input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    color: black;
+}
+
+/* Ajuste para permitir escribir */
+.username input::placeholder, .Contraseña input::placeholder {
+    color: gray;
+    font-size: 16px;
+}
+
+.username label, .Contraseña label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: gray;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* Movimiento de la etiqueta cuando se escribe */
+.username input:focus ~ label,
+.username input:valid ~ label,
+.Contraseña input:focus ~ label,
+.Contraseña input:valid ~ label {
+    top: -10px;
+    left: 0;
+    font-size: 12px;
+    color: black;
+}
+
+
+input[type="button"] {
+    width: 100%;
+    height: 40px;
+    background: #FFD36E;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+input[type="button"]:hover {
+    background: #545454;
+}
+
+
+.recordar {
+    text-align: right;
+    font-size: 14px;
+    color: #545454;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.recordar:hover {
+    text-decoration: underline;
+}
+
+/* Registro */
+.registar {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.registar a {
+    color: #FFD36E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.registar a:hover {
+    text-decoration: underline;
+}
