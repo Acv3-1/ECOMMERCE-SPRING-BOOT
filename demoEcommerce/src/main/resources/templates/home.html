@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ShopFast Express</title>
+    {% load static %}
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <header>
+        <h1>ShopFast Express</h1>
+    </header>
+
+    <section class="resumen">
+        <div class="card">Pedidos Activos: <span></span></div>
+        <div class="card">Ingresos Totales: <span></span></div>
+        <div class="card">Envíos en Tránsito: <span></span></div>
+    </section>
+
+    <section class="accesos">
+        <a href="{% url 'productos' %}" class="btn">Gestionar Productos</a>
+        <a href="{% url 'pedidos' %}" class="btn">Gestionar Pedidos</a>
+        <a href="{% url 'envios' %}" class="btn">Seguimiento de Envíos</a>
+        <a href="{% url 'reportes' %}" class="btn">Ver Reportes</a>
+    </section>
+
+    <section class="ultimos-pedidos">
+        <h2>Últimos Pedidos</h2>
+        <table>
+            <tr>
+                <th>ID Pedido</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+            </tr>
+            <tr>
+                <td>#1001</td>
+                <td>Juan Pérez</td>
+                <td>Pendiente</td>
+            </tr>
+        </table>
+    </section>
+</body>
+</html>

@@ -13,5 +13,15 @@ public class Hola {
     public String hola(){
         return "login";
     }
+    
+    @GetMapping("/registro/")
+    public String registros() {
+        return "registro";
+    }
+    
+    @GetMapping("/home/")
+    public String home() {
+        return "home";
+    }
 
 }

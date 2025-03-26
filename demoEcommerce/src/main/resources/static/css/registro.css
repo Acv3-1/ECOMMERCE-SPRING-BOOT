@@ -1,0 +1,92 @@
+/* Reset y estilos base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(100deg, #5cd89e7b, #005D68);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario {
+    width: 350px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.email, .Contraseña {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.email input, .Contraseña input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    color: black;
+}
+
+.email label, .Contraseña label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: gray;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.3s ease-in-out;
+}
+
+/* Movimiento de etiqueta */
+.email input:focus ~ label,
+.email input:valid ~ label,
+.Contraseña input:focus ~ label,
+.Contraseña input:valid ~ label {
+    top: -10px;
+    left: 0;
+    font-size: 12px;
+    color: black;
+}
+
+/* Botón */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background: #FFD36E;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background: #732d91;
+}
+
+.login {
+    margin-top: 10px;
+}
+
+.login a {
+    color: #8e44ad;
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
