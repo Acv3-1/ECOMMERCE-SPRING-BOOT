@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos</title>
+    <link rel="stylesheet" href="/css/pedidos.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Pedidos</h1>
+    </header>
+
+    <section class="acciones">
+        <button class="btn" onclick="mostrarFormulario()">Agregar Pedido</button>
+    </section>
+
+    <section id="formulario-pedido" class="formulario-oculto">
+        <h2 id="titulo-formulario">Agregar Pedido</h2>
+        <input type="hidden" id="editando-id">
+        <input type="text" id="cliente" placeholder="Nombre del Cliente" required>
+        <input type="date" id="fecha" required>
+        <select id="estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Entregado">Entregado</option>
+        </select>
+        <input type="number" id="monto" placeholder="Monto Total" required>
+        <button onclick="guardarPedido()">Guardar</button>
+        <button onclick="cancelarEdicion()">Cancelar</button>
+    </section>
+
+    <section class="lista-pedidos">
+        <h2>Lista de Pedidos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Monto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-pedidos">
+                <!-- Aquí se insertarán los pedidos dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="/css/js/pedidos.js"></script>
+</body>
+</html>

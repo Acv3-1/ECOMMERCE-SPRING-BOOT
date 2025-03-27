@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 
 
+
+
+
 @Controller
 public class Hola {
     
@@ -23,5 +26,28 @@ public class Hola {
     public String home() {
         return "home";
     }
+
+    @GetMapping("/pedidos/")
+    public String pedidos() {
+        return "pedidos";
+    }
+    
+
+    @GetMapping("/envios/")
+    public String envios() {
+        return "envios";
+    }
+    
+    @GetMapping("/productos/")
+    public String productos() {
+        return "productos";
+    }
+    
+    @GetMapping("/reportes/")
+    public String reportes() {
+        return "reportes";
+    }
+
+
 
 }

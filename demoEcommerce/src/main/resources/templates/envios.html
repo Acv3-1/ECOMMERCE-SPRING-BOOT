@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Envíos</title>
+    <link rel="stylesheet" href="/css/envios.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Envíos</h1>
+    </header>
+
+    <section class="acciones">
+        <button class="btn" onclick="mostrarFormulario()">Registrar Envío</button>
+    </section>
+
+    <section id="formulario-envio" class="formulario-oculto">
+        <h2 id="titulo-formulario">Registrar Envío</h2>
+        <input type="hidden" id="editando-id">
+        <input type="text" id="pedido-id" placeholder="ID del Pedido" required>
+        <input type="text" id="transportista" placeholder="Transportista" required>
+        <select id="estado">
+            <option value="En preparación">En preparación</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Entregado">Entregado</option>
+        </select>
+        <button onclick="guardarEnvio()">Guardar</button>
+        <button onclick="cancelarEdicion()">Cancelar</button>
+    </section>
+
+    <section class="lista-envios">
+        <h2>Lista de Envíos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Envío</th>
+                    <th>ID Pedido</th>
+                    <th>Transportista</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-envios">
+                <!-- Aquí se insertarán los envíos dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="/css/js/envios.js"></script>
+</body>
+</html>

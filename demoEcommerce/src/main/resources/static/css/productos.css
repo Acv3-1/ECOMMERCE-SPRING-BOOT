@@ -1,0 +1,92 @@
+/* Paleta de colores basada en el documento */
+:root {
+    --primary-color: #5CD89F; /* Verde */
+    --secondary-color: #FFD36E; /* Amarillo */
+    --text-color: #333;
+    --background-color: #f4f4f4;
+    --header-color: #5CD89F;
+    --button-color: #FFD36E;
+    --button-hover: #e6b85c;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+header {
+    background-color: var(--header-color);
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.acciones {
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    background: var(--button-color);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: var(--button-hover);
+}
+
+.lista-productos {
+    margin: 20px;
+}
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+th {
+    background: var(--header-color);
+    color: white;
+}
+
+.editar {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editar:hover {
+    background: #2980b9;
+}
+
+.eliminar {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.eliminar:hover {
+    background: #c0392b;
+}
+
+

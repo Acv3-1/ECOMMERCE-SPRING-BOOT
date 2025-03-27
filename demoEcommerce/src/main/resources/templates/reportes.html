@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes de Ventas</title>
+    <link rel="stylesheet" href="/css/reportes.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Reportes de Ventas</h1>
+    </header>
+
+    <section class="resumen">
+        <div class="card">Total Ventas: <span id="total-ventas">$0</span></div>
+        <div class="card">Pedidos Completados: <span id="pedidos-completados">0</span></div>
+    </section>
+
+    <section class="grafico">
+        <h2>Ventas Mensuales</h2>
+        <canvas id="graficoVentas"></canvas>
+    </section>
+
+    <section class="lista-reportes">
+        <h2>Historial de Ventas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-reportes">
+                <!-- Datos dinámicos -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="/css/js/reportes.js"></script>
+</body>
+</html>

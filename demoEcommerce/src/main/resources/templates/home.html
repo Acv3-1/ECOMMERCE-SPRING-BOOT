@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - ShopFast Express</title>
-    {% load static %}
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
@@ -19,10 +18,10 @@
     </section>
 
     <section class="accesos">
-        <a href="{% url 'productos' %}" class="btn">Gestionar Productos</a>
-        <a href="{% url 'pedidos' %}" class="btn">Gestionar Pedidos</a>
-        <a href="{% url 'envios' %}" class="btn">Seguimiento de Envíos</a>
-        <a href="{% url 'reportes' %}" class="btn">Ver Reportes</a>
+        <a href="/productos/" class="btn">Gestionar Productos</a>
+        <a href="/pedidos/" class="btn">Gestionar Pedidos</a>
+        <a href="/envios/" class="btn">Seguimiento de Envíos</a>
+        <a href="/reportes/" class="btn">Ver Reportes</a>
     </section>
 
     <section class="ultimos-pedidos">

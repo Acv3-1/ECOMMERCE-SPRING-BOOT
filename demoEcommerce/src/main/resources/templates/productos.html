@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="/css/productos.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Productos</h1>
+    </header>
+
+    <section class="acciones">
+        <button class="btn" onclick="mostrarFormulario()">Agregar Producto</button>
+    </section>
+
+    <section id="formulario-producto" class="formulario-oculto">
+        <h2 id="titulo-formulario">Agregar Producto</h2>
+        <input type="hidden" id="editando-id">
+        <input type="text" id="nombre" placeholder="Nombre del producto" required>
+        <input type="number" id="precio" placeholder="Precio" required>
+        <input type="number" id="stock" placeholder="Stock" required>
+        <button onclick="guardarProducto()">Guardar</button>
+        <button onclick="cancelarEdicion()">Cancelar</button>
+    </section>
+
+    <section class="lista-productos">
+        <h2>Lista de Productos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-productos">
+                <!-- Aquí se insertarán los productos dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="/css/js/productos.js"></script>
+</body>
+</html>
