@@ -8,8 +8,7 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String barcode;
 
     @Column(name = "marca", length = 150)
     private String marca;
