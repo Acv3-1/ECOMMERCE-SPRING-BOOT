@@ -1,10 +1,10 @@
 /* Paleta de colores basada en el documento */
 :root {
-    --primary-color: #5CD89F; /* Verde */
+    --primary-color: #5cd89f ; /* Verde */
     --secondary-color: #FFD36E; /* Amarillo */
     --text-color: #333;
-    --background-color: #f4f4f4;
-    --header-color: #5CD89F;
+    --background: linear-gradient(100deg, #5cd89e7b, #005D68);
+    --header-color: #5cd89f ;
     --button-color: #FFD36E;
     --button-hover: #e6b85c;
 }
@@ -22,6 +22,11 @@ header {
     color: white;
     padding: 20px;
     font-size: 24px;
+    backdrop-filter: blur(8px); /* Efecto de difuminado */
+    border-radius: 10px; /* Opcional: bordes redondeados */
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra para destacar */
+
 }
 
 .resumen {

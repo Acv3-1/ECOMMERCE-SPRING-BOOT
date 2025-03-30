@@ -25,9 +25,13 @@ public class Cliente {
     @Column(name = "telefono", length = 20)
     private String telefono;
 
+    @Column(name = "password", length = 20)
+    private String password;
+
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
     @OneToMany(mappedBy = "transportista")
     private List<Vehiculo> vehiculos = new ArrayList<>();
+
 }

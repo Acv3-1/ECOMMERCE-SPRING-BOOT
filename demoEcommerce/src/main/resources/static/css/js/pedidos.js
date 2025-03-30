@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let pedidos = [
     { id: 1, cliente: "Juan Pérez", fecha: "2024-03-25", estado: "Pendiente", monto: 500 },
-    { id: 2, cliente: "María López", fecha: "2024-03-26", estado: "Enviado", monto: 300 }
+    { id: 2, cliente: "María López", fecha: "2024-03-26", estado: "Enviado", monto: 300 },
+    { id: 2, cliente: "María López", fecha: "2024-03-26", estado: "Enviado", monto: 300 },
 ];
 
 function mostrarPedidos() {

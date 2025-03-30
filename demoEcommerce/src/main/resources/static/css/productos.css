@@ -89,4 +89,25 @@ th {
     background: #c0392b;
 }
 
+/* Estilo para el campo de carga de fotos */
+#foto {
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* Estilo para las imágenes en la tabla */
+.lista-productos table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.producto-imagen {
+    max-width: 100px; /* Ajusta el ancho máximo */
+    max-height: 100px; /* Ajusta la altura máxima */
+    object-fit: cover; /* Asegura que la imagen mantenga su proporción */
+}
 

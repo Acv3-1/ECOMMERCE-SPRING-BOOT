@@ -22,7 +22,7 @@ function generarDatos() {
 function generarGrafico() {
     const ctx = document.getElementById("graficoVentas").getContext("2d");
     let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio"];
-    let ventas = [1000, 1200, 1500, 1800, 2200, 2500];
+    let ventas = [1000, 1800, 1500, 1800, 2200, 2500];
 
     new Chart(ctx, {
         type: "bar",

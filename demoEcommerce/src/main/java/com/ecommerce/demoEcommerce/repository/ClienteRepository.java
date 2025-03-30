@@ -9,4 +9,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     // Consultas personalizadas
     Cliente findByCorreo(String correo);
     List<Cliente> findByNombreContainingIgnoreCase(String nombre);
+
+    
 }
