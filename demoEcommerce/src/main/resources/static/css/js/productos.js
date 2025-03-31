@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarProductos();
-});
+
 
 let productos = [
     { id: 1, nombre: "Producto A", precio: 50, stock: 20 },
@@ -45,7 +43,7 @@ function guardarProducto() {
     const precio = document.getElementById("precio").value;
     const stock = document.getElementById("stock").value;
     const fotoInput = document.getElementById("foto");
-
+    const marca = document.getElementById("Marca").value;
     // Validar que los campos no estén vacíos
     if (!nombre || !precio || !stock || !fotoInput.files[0]) {
         alert("Por favor, completa todos los campos y selecciona una foto.");
@@ -55,11 +53,11 @@ function guardarProducto() {
     // Crear un objeto FormData para enviar los datos y la imagen
     const formData = new FormData();
     formData.append("id", id);
+    formData.append("marca", marca);
     formData.append("nombre", nombre);
     formData.append("precio", parseFloat(precio).toFixed(2));
     formData.append("stock", parseInt(stock));
     formData.append("foto", fotoInput.files[0]); // Agregar la imagen
-
     // Enviar el producto al backend
     fetch("/productos/upload", {
         method: "POST",

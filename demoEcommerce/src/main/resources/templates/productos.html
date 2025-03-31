@@ -17,7 +17,8 @@
 
     <section id="formulario-producto" class="formulario-oculto">
         <h2 id="titulo-formulario">Agregar Producto</h2>
-        <input type="hidden" id="editando-id">
+        <input type="number" id="editando-id" placeholder="codigo de barras">
+        <input type="text" id="Marca" placeholder="Marca del producto" required>
         <input type="text" id="nombre" placeholder="Nombre del producto" required>
         <input type="number" id="precio" placeholder="Precio" required>
         <input type="number" id="stock" placeholder="Stock" required>
@@ -40,8 +41,20 @@
                 </tr>
             </thead>
             <tbody id="tabla-productos">
-                <!-- Aquí se insertarán los productos dinámicamente -->
-            </tbody>
+    <tr th:each="producto : ${productos}">
+        <td th:text="${producto.barcode}">Codigo</td>
+        <td th:text="${producto.nombre}">Nombre</td>
+        <td th:text="${producto.precio}">Precio</td>
+        <td th:text="${producto.stock}">Stock</td>
+        <td>
+            <img th:src="@{{foto}(foto=${producto.foto})}" alt="Foto del producto" width="50">
+        </td>
+        <td>
+            <button class="btn-editar" data-barcode="${producto.barcode}">Editar</button>
+            <button class="btn-eliminar" data-barcode="${producto.barcode}">Eliminar</button>
+        </td>
+    </tr>
+</tbody>
         </table>
     </section>
 
