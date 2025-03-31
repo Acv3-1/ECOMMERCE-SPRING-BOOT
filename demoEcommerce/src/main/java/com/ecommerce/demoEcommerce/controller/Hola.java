@@ -51,7 +51,9 @@ public class Hola {
     }
 
     @GetMapping("/ecommerce/")
-    public String ecommerce() {
+    public String ecommerce(Model model) {
+        List<Producto> productos = productoRepository.findAll(); // Obtiene todos los productos
+        model.addAttribute("productos", productos); // Pasa los productos al modelo
         return "ecommerce";
     }
 }

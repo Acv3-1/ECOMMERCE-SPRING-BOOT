@@ -45,7 +45,6 @@ public class RegistroController {
         if (correo == null || !passwordEncoder.matches(password, cliente.getPassword())) {
             return "redirect:/?error=Invalid credentials";
         }
-
-        return "redirect:/ecommerce/"; // Redirige al dashboard o página principa
+        return "redirect:/ecommerce/"; // Redirige al dashboard o página princip
     }
 }

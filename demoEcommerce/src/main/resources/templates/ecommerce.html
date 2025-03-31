@@ -21,14 +21,6 @@
           </a>
         </div>
         
-        <nav class="main-nav">
-          <ul class="nav-list">
-            <li><a href="3
-                #" class="nav-link">Home</a></li>
-            <li><a href="#" class="nav-link">Shop</a></li>
-          </ul>
-        </nav>
-        
         <div class="header-actions">
           <button class="icon-button" aria-label="Search">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -58,68 +50,19 @@
           </a>
         </div>
         <div class="products-grid">
-          <div class="product-card">
+          <div class="product-card" th:each="producto : ${productos}">
             <div class="product-image-container">
-              <img src="https://cdnx.jumpseller.com/mafer-computacion/image/5433165/resize/1200/1200?1555960999" alt="Product 1" class="product-image">
-              <button class="wishlist-button" aria-label="Add to wishlist">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-              </button>
-              <span class="product-badge">New</span>
-            </div>
-            <div class="product-info">
-              <h3 class="product-title">RAM 8Gb </h3>
-              <p class="product-description">Sustainable materials</p>
-              <div class="product-footer">
-                <span class="product-price">$49.99</span>
-                <button class="btn btn-small">Add to cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image-container">
-              <img src="https://th.bing.com/th/id/R.a581e132e15f230d5031b7c32e7537f3?rik=8z0AiNiVHkZBWg&pid=ImgRaw&r=0" alt="Product 2" class="product-image">
+              <img th:src="@{{foto}(foto=${producto.foto})}" alt="Product 1" class="product-image">
               <button class="wishlist-button" aria-label="Add to wishlist">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
               </button>
             </div>
             <div class="product-info">
-              <h3 class="product-title">Eco-friendly Product 2</h3>
-              <p class="product-description">Sustainable materials</p>
+              <h3 class="product-title" th:text="${producto.nombre}">RAM 8Gb </h3>
+              <p class="product-description" th:text="'Disponibles' + ${producto.stock}">Disponibles</p>
               <div class="product-footer">
-                <span class="product-price">$39.98</span>
-                <button class="btn btn-small">Add to cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image-container">
-              <img src="https://rankinghardware.es/wp-content/uploads/2018/03/Cougar-lanza-su-impresionante-chasis-Panzer-Evo-de-vidrio-templado-2.jpg" alt="Product 3" class="product-image">
-              <button class="wishlist-button" aria-label="Add to wishlist">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-              </button>
-            </div>
-            <div class="product-info">
-              <h3 class="product-title">Eco-friendly Product 3</h3>
-              <p class="product-description">Sustainable materials</p>
-              <div class="product-footer">
-                <span class="product-price">$59.97</span>
-                <button class="btn btn-small">Add to cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-image-container">
-              <img src="https://www.bhphotovideo.com/images/images2500x2500/logitech_910_005091_g703_lightspeed_wireless_gaming_1374580.jpg" alt="Product 4" class="product-image">
-              <button class="wishlist-button" aria-label="Add to wishlist">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-              </button>
-            </div>
-            <div class="product-info">
-              <h3 class="product-title">Eco-friendly Product 4</h3>
-              <p class="product-description">Sustainable materials</p>
-              <div class="product-footer">
-                <span class="product-price">$79.96</span>
-                <button class="btn btn-small">Add to cart</button>
+                <span class="product-price" th:text="${producto.precio}">sadas</span>
+                <button class="btn btn-small">Agregar al carrito</button>
               </div>
             </div>
           </div>
