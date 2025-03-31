@@ -7,7 +7,7 @@ import java.util.List;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     // Consultas personalizadas
-    Cliente findByCorreo(String correo);
+    Cliente findByCorreo(String Correo);
     List<Cliente> findByNombreContainingIgnoreCase(String nombre);
 
     

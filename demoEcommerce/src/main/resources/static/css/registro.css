@@ -24,13 +24,13 @@ h1 {
     font-size: 24px;
 }
 
-.email, .Contraseña {
+.cedula, .nombre, .email, .Contraseña {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
 }
 
-.email input, .Contraseña input {
+.cedula input, .nombre input, .email input, .Contraseña input {
     width: 100%;
     padding: 10px;
     border: none;
@@ -40,7 +40,7 @@ h1 {
     color: black;
 }
 
-.email label, .Contraseña label {
+.cedula label, .nombre label, .email label, .Contraseña label {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -51,6 +51,10 @@ h1 {
 }
 
 /* Movimiento de etiqueta */
+.cedula input:focus ~ label,
+.cedula input:valid ~ label,
+.nombre input:focus ~ label,
+.nombre input:valid ~ label,
 .email input:focus ~ label,
 .email input:valid ~ label,
 .Contraseña input:focus ~ label,

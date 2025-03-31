@@ -39,10 +39,10 @@ public class RegistroController {
 
     // Método para validar inicio de sesión
     @PostMapping("/login")
-    public String validarInicioSesion(@RequestParam String email, @RequestParam String password) {
-        Cliente cliente = clienteRepository.findByCorreo(email);
+    public String validarInicioSesion(@RequestParam String correo, @RequestParam String password) {
+        Cliente cliente = clienteRepository.findByCorreo(correo);
 
-        if (cliente == null || !passwordEncoder.matches(password, cliente.getPassword())) {
+        if (correo == null || !passwordEncoder.matches(password, cliente.getPassword())) {
             return "redirect:/?error=Invalid credentials";
         }
 

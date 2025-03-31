@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductoRepository extends JpaRepository<Producto, Long> {
+public interface ProductoRepository extends JpaRepository<Producto, String> {
     // Consulta JPQL personalizada
     @Query("SELECT p FROM Producto p WHERE p.precio BETWEEN ?1 AND ?2")
     List<Producto> findByPrecioRange(double minPrecio, double maxPrecio);
