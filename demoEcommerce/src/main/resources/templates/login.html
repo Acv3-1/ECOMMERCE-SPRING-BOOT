@@ -9,28 +9,23 @@
 <body>
     <div class="formulario">
         <h1>Inicio de sesión</h1>
-        <form method="post">
+        <form method="post" action="/registro/login">
             <div class="username">
-                <input type="text" required>
+                <input type="text" name="email" required>
                 <label>Nombre de usuario</label>
             </div>
             <div class="Contraseña">
-                <input type="password" required>
+                <input type="password" name="password" required>
                 <label>Contraseña</label>
             </div>
             <div class="recordar">
                 ¿Olvidó su contraseña?
             </div>
-            
-
-            <input type="button" value="Iniciar" onclick="window.location.href='/ecommerce/';">
-            
-
-
+            <button type="submit">Iniciar sesion</button>
+        </form>
             <div class="registar"> 
                 Quiero <a href="/registro/">registrarme</a>
             </div>
-        </form>
     </div>
 </body>
 </html>
