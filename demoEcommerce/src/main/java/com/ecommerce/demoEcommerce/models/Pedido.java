@@ -29,7 +29,9 @@ public class Pedido {
 
     @OneToOne(mappedBy = "pedido")
     private Pago pago;
+    
 
     @OneToMany(mappedBy = "pedido")
     private List<Envio> envios = new ArrayList<>();
+
 }

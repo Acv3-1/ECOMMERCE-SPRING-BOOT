@@ -68,11 +68,26 @@ function finalizarCompra() {
   // Convertir el carrito a JSON
   const cartJSON = JSON.stringify(cart);
 
-  // Almacenar el carrito en el localStorage para usarlo en la vista de checkout
-  localStorage.setItem("carrito", cartJSON);
-
-  // Redirigir a la vista de checkout
-  window.location.href = "/checkout";
+  // Enviar el carrito al backend
+  fetch("/api/stripe/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: cartJSON, // Enviar el carrito como JSON
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.url) {
+        // Redirigir al cliente a la URL de Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        console.error("Error al crear la sesión de Stripe:", data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
