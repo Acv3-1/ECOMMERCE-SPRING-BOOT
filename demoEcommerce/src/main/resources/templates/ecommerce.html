@@ -59,7 +59,7 @@
             </div>
             <div class="product-info">
               <h3 class="product-title" th:text="${producto.nombre}">RAM 8Gb </h3>
-              <p class="product-description" th:text="'Disponibles' + ${producto.stock}">Disponibles</p>
+              <p class="product-description" th:text="'Disponibles: ' + ${producto.stock}">Disponibles</p>
               <div class="product-footer">
                 <span class="product-price" th:text="${producto.precio}">sadas</span>
                 <button class="btn btn-small">Agregar al carrito</button>
@@ -93,6 +93,18 @@
       </div>
     </section>
   </main>
+
+  <!-- Carrito de compras -->
+  <aside class="shopping-cart">
+    <h2>Carrito de Compras</h2>
+    <ul id="cart-items">
+      <!-- Los productos seleccionados se agregarán aquí dinámicamente -->
+    </ul>
+    <div class="cart-footer">
+      <p>Total: <span id="cart-total">$0.00</span></p>
+      <button class="btn btn-primary" id="checkout-button" onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+  </aside>
 
   <!-- Footer -->
   <footer class="footer">
@@ -145,6 +157,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="/css/js/carrito.js"></script>
 </body>
 </html>
