@@ -7,22 +7,31 @@ import lombok.*;
 @Table(name = "envios")
 @Getter @Setter @NoArgsConstructor
 public class Envio {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generar automáticamente el ID
     @Column(name = "id_envio")
     private int idEnvio;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pedido")
+    @OneToOne
+    @JoinColumn(name = "id_pedido", nullable = false) // Relación con Pedido
     private Pedido pedido;
 
-    @ManyToOne
-    @JoinColumn(name = "cc_transportista")
-    private Cliente transportista;
+    @Column(name = "direccion", length = 255, nullable = false)
+    private String direccion;
 
-    @ManyToOne
-    @JoinColumn(name = "placa_vehiculo")
-    private Vehiculo vehiculo;
+    @Column(name = "ciudad", length = 100, nullable = false)
+    private String ciudad;
 
     @Column(name = "estado", length = 100)
     private String estado;
+
+    @Column(name = "codigo_postal", length = 20, nullable = false)
+    private String codigoPostal;
+
+    @Column(name = "pais", length = 100, nullable = false)
+    private String pais;
+
+    @Column(name = "estado_envio", length = 100, nullable = false)
+    private String estadoEnvio; // Estado del envío (ej. "pendiente", "enviado")
 }

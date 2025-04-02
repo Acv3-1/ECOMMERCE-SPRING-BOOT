@@ -4,8 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pago exitoso</title>
+    <link rel="stylesheet" href="/css/ecommerce.css"> <!-- Enlace al archivo de estilos -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Obtener el session_id de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const sessionId = urlParams.get("session_id");
+
+            if (sessionId) {
+                // Hacer una solicitud al backend para guardar el pedido
+                fetch(`/api/pedidos/guardar?session_id=${sessionId}`)
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.text(); // Leer el mensaje de éxito
+                        } else {
+                            throw new Error("Error al guardar el pedido");
+                        }
+                    })
+                    .then((data) => {
+                        console.log(data); // Mostrar el mensaje de éxito en la consola
+                        // Redirigir a la página de pedidos
+                        window.location.href = "/pedidos/";
+                    })
+                    .catch((error) => {
+                        console.error("Error al guardar el pedido:", error);
+                        alert("Hubo un problema al procesar tu pedido. Por favor, contacta al soporte.");
+                    });
+            } else {
+                console.error("No se encontró el session_id en la URL");
+                alert("No se pudo procesar tu pedido. Por favor, contacta al soporte.");
+            }
+        });
+    </script>
 </head>
 <body>
-    <h1>¡Gracias por tu compra!</h1>
-    <p>Tu pago se ha procesado correctamente.</p>
+    <main class="success-container">
+        <div class="success-card">
+            <h1 class="success-title">¡Gracias por tu compra!</h1>
+            <p class="success-message">Tu pago se ha procesado correctamente. Estamos procesando tu pedido...</p>
+            <div class="success-loader"></div>
+        </div>
+    </main>
 </body>
+</html>

@@ -58,7 +58,7 @@ public class StripeController {
             // Crear la sesión de Stripe Checkout
             SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT) // Modo de pago
-                .setSuccessUrl(baseUrl + "/success") // URL de éxito
+                .setSuccessUrl(baseUrl + "/success?session_id={CHECKOUT_SESSION_ID}") // URL de éxito
                 .setCancelUrl(baseUrl + "/cancel") // URL de cancelación
                 .addAllLineItem(lineItems)
                 .build();

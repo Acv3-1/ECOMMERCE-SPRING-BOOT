@@ -1,5 +1,7 @@
 package com.ecommerce.demoEcommerce.controller;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -39,12 +41,16 @@ public class RegistroController {
 
     // Método para validar inicio de sesión
     @PostMapping("/login")
-    public String validarInicioSesion(@RequestParam String correo, @RequestParam String password) {
+    public String validarInicioSesion(@RequestParam String correo, @RequestParam String password, HttpSession session) {
         Cliente cliente = clienteRepository.findByCorreo(correo);
 
-        if (correo == null || !passwordEncoder.matches(password, cliente.getPassword())) {
+        if (cliente == null || !passwordEncoder.matches(password, cliente.getPassword())) {
             return "redirect:/?error=Invalid credentials";
         }
-        return "redirect:/ecommerce/"; // Redirige al dashboard o página princip
+
+        // Guardar los datos del usuario en la sesión
+        session.setAttribute("usuario", cliente);
+
+        return "redirect:/ecommerce/"; // Redirige al dashboard
     }
 }

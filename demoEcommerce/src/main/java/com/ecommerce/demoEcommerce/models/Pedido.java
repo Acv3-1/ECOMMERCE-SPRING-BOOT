@@ -30,7 +30,8 @@ public class Pedido {
     @OneToOne(mappedBy = "pedido")
     private Pago pago;
     
-
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Envio envio;
     @OneToMany(mappedBy = "pedido")
     private List<Envio> envios = new ArrayList<>();
 
