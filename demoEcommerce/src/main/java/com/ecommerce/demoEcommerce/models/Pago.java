@@ -8,6 +8,7 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor
 public class Pago {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pago")
     private int idPago;
 

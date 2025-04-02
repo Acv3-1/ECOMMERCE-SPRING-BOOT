@@ -5,6 +5,7 @@ import com.ecommerce.demoEcommerce.models.Envio;
 import com.ecommerce.demoEcommerce.models.Pago;
 import com.ecommerce.demoEcommerce.models.Pedido;
 import com.ecommerce.demoEcommerce.repository.ClienteRepository;
+import com.ecommerce.demoEcommerce.repository.EnvioRepository;
 import com.ecommerce.demoEcommerce.repository.PedidoRepository;
 import com.ecommerce.demoEcommerce.repository.PagoRepository;
 import com.stripe.Stripe;
@@ -25,11 +26,13 @@ public class PedidoController {
     private final PedidoRepository pedidoRepository;
     private final PagoRepository pagoRepository;
     private final ClienteRepository clienteRepository;
+    private final EnvioRepository envioRepository;
 
-    public PedidoController(PedidoRepository pedidoRepository, PagoRepository pagoRepository, ClienteRepository clienteRepository) {
+    public PedidoController(PedidoRepository pedidoRepository, PagoRepository pagoRepository, ClienteRepository clienteRepository, EnvioRepository envioRepository) {
         this.pedidoRepository = pedidoRepository;
         this.pagoRepository = pagoRepository;
         this.clienteRepository = clienteRepository;
+        this.envioRepository = envioRepository;
     }
 
     @GetMapping("/guardar")
@@ -71,9 +74,13 @@ public class PedidoController {
                 envio.setPais(session.getShippingDetails().getAddress().getCountry());
                 envio.setPedido(pedido); // Asociar el envío al pedido
 
-                // Asociar el envío al pedido
-                pedido.setEnvio(envio);
+                // Guardar el envío explícitamente
+                envioRepository.save(envio); // Guardar el envío explícitamente
+                pedido.setEnvio(envio); // Asociar el envío al pedido
             }
+
+            // Calcular el monto total del pedido
+            pedido.setMontoTotal((float) (session.getAmountTotal() / 100.0)); // Convertir de centavos a la moneda original
 
             // Guardar el pedido y el envío en la base de datos
             pedidoRepository.save(pedido);
