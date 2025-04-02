@@ -12,6 +12,8 @@ import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +57,7 @@ public class PedidoController {
             Pedido pedido = new Pedido();
             pedido.setEstado("pendiente por envío"); // Estado inicial del pedido
             pedido.setPago(pago); // Asociar el pago al pedido
-
+            pedido.setFecha(LocalDateTime.now()); // Fecha y hora actual
             // Asociar el pedido con el cliente (recuperado de la sesión de Stripe)
             String clienteCorreo = session.getCustomerDetails().getEmail(); // Obtener el correo del cliente
             Cliente cliente = clienteRepository.findByCorreo(clienteCorreo);
