@@ -1,5 +1,3 @@
-
-
 let productos = [
     { id: 1, nombre: "Producto A", precio: 50, stock: 20 },
     { id: 2, nombre: "Producto B", precio: 30, stock: 15 },
@@ -19,7 +17,7 @@ function mostrarProductos() {
                 <td><img src="${producto.foto}" style="max-width: 300px; max-height: 300px; object-fit: cover;"></td>
                 <td>
                     <button class="editar" onclick="editarProducto(${index})">Editar</button>
-                    <button class="eliminar" onclick="eliminarProducto(${index})">Eliminar</button>
+                     <button class="eliminar" onclick="eliminarProducto(this)" data-id="${producto.id}">Eliminar</button>
                 </td>
             </tr>
         `;
@@ -82,21 +80,66 @@ function guardarProducto() {
     });
 }
 
-function editarProducto(index) {
-    const producto = productos[index];
+function editarProducto(button) {
+    // Obtener el valor de barcode desde el atributo data-barcode
+    const barcode = button.getAttribute("data-id");
+    console.log("Producto a editar con barcode:", barcode); // Depuración
+
+    // Buscar el producto en la lista local (productos) usando el barcode
+    const producto = productos.find(p => p.barcode === barcode);
+
+    if (!producto) {
+        alert("Producto no encontrado.");
+        return;
+    }
+
+    // Mostrar el formulario
     document.getElementById("formulario-producto").style.display = "block";
+
+    // Cambiar el título del formulario
     document.getElementById("titulo-formulario").textContent = "Editar Producto";
-    document.getElementById("editando-id").value = producto.id;
+
+    // Rellenar los campos del formulario con la información del producto
+    document.getElementById("editando-id").value = producto.barcode;
+    document.getElementById("Marca").value = producto.marca || ""; // Si no tiene marca, dejar vacío
     document.getElementById("nombre").value = producto.nombre;
     document.getElementById("precio").value = producto.precio;
     document.getElementById("stock").value = producto.stock;
+
+    // Nota: El campo de archivo (foto) no puede ser prellenado por razones de seguridad.
 }
 
-function eliminarProducto(index) {
-    productos.splice(index, 1);
-    mostrarProductos();
+function eliminarProducto(button) {
+    // Obtener el valor de barcode desde el atributo data-id
+    const barcode = button.getAttribute("data-id");
+    console.log("Valor de barcode recibido:", barcode); // Depuración
+
+    // Confirmar antes de eliminar
+    if (!confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+        return;
+    }
+
+    // Enviar la solicitud al backend para eliminar el producto
+    fetch(`/productos/barcode?barcode=${barcode}`, {
+        method: "DELETE",
+    })
+    .then(response => {
+        if (!response.ok) { 
+            throw new Error("Error al eliminar el producto.");
+        }
+        return response.text();
+    })
+    .then(() => {
+        alert("Producto eliminado exitosamente.");
+        location.reload(); // Recargar la página para actualizar la lista
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Hubo un problema al eliminar el producto.");
+    });
 }
 
 function cancelarEdicion() {
     document.getElementById("formulario-producto").style.display = "none";
 }
+

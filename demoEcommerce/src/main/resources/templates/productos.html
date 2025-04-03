@@ -50,8 +50,8 @@
             <img th:src="@{{foto}(foto=${producto.foto})}" alt="Foto del producto" width="50">
         </td>
         <td>
-            <button class="btn-editar" data-barcode="${producto.barcode}">Editar</button>
-            <button class="btn-eliminar" data-barcode="${producto.barcode}">Eliminar</button>
+            <button class="btn-editar" th:data-id="${producto.barcode}" onclick="editarProducto(this)">Editar</button>
+            <button class="btn-eliminar" th:data-id="${producto.barcode}" onclick="eliminarProducto(this)">Eliminar</button>
         </td>
     </tr>
 </tbody>

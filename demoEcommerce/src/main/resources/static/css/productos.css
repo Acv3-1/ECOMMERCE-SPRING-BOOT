@@ -42,6 +42,19 @@ header {
     background: var(--button-hover);
 }
 
+.btn-eliminar {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-eliminar:hover {
+    background-color: #cc0000;
+}
+
 .lista-productos {
     margin: 20px;
 }

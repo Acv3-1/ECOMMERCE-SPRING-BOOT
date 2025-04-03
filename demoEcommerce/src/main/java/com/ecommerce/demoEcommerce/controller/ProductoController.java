@@ -78,4 +78,20 @@ public class ProductoController {
         List<Producto> productos = productoRepository.findAll();
         return ResponseEntity.ok(productos);
     }
+
+    @DeleteMapping("/barcode")
+    public ResponseEntity<Void> eliminarProducto(@RequestParam String barcode) {
+        System.out.println("Intentando eliminar producto con barcode: " + barcode);
+
+        if (productoRepository.existsBybarcode(barcode)) {
+            productoRepository.deleteBybarcode(barcode);
+            System.out.println("Producto eliminado exitosamente.");
+            return ResponseEntity.noContent().build(); // Respuesta 204 No Content
+        } else {
+            System.out.println("Producto no encontrado.");
+            return ResponseEntity.notFound().build(); // Respuesta 404 Not Found
+        }
+    }
+
+    
 }

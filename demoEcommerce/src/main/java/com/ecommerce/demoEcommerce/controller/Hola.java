@@ -70,4 +70,9 @@ public class Hola {
         model.addAttribute("sessionId", sessionId); // Pasar el sessionId al modelo si es necesario
         return "success"; // Renderiza el archivo success.html
     }
+    @GetMapping("/envios")
+    public String getMethodName(@RequestParam String param) {
+        return "confirmacion";
+    }
+    
 }
