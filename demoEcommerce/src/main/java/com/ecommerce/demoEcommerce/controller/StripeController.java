@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -56,12 +57,24 @@ public class StripeController {
             }
 
             // Crear la sesión de Stripe Checkout
-            SessionCreateParams params = SessionCreateParams.builder()
-                .setMode(SessionCreateParams.Mode.PAYMENT) // Modo de pago
-                .setSuccessUrl(baseUrl + "/success?session_id={CHECKOUT_SESSION_ID}") // URL de éxito
-                .setCancelUrl(baseUrl + "/cancel") // URL de cancelación
-                .addAllLineItem(lineItems)
-                .build();
+            SessionCreateParams params =
+                SessionCreateParams.builder()
+                    .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD) // Configurar métodos de pago
+                    .setMode(SessionCreateParams.Mode.PAYMENT)
+                    .setSuccessUrl(baseUrl + "/success?session_id={CHECKOUT_SESSION_ID}")
+                    .setCancelUrl(baseUrl + "/cancel")
+                    .setShippingAddressCollection(
+                        SessionCreateParams.ShippingAddressCollection.builder()
+                            .addAllowedCountry(SessionCreateParams.ShippingAddressCollection.AllowedCountry.CO) // Código correcto para Colombia
+                            .build()
+                    )
+                    .addShippingOption(
+                        SessionCreateParams.ShippingOption.builder()
+                            .setShippingRate("shr_1R9boY4cKOGuLXVm7e7ULhjQ") // ID de la tarifa de envío en Stripe
+                            .build()
+                    )
+                    .addAllLineItem(lineItems)
+                    .build();
 
             Session session = Session.create(params);
 

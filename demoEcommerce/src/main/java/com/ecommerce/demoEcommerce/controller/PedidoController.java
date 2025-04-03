@@ -68,6 +68,7 @@ public class PedidoController {
 
             // Registrar información del envío
             if (session.getShippingDetails() != null && session.getShippingDetails().getAddress() != null) {
+                pedidoRepository.save(pedido); // Guardar el pedido antes de crear el envío
                 Envio envio = new Envio();
                 envio.setDireccion(session.getShippingDetails().getAddress().getLine1()); // Dirección de envío
                 envio.setCiudad(session.getShippingDetails().getAddress().getCity());
@@ -75,7 +76,9 @@ public class PedidoController {
                 envio.setCodigoPostal(session.getShippingDetails().getAddress().getPostalCode());
                 envio.setPais(session.getShippingDetails().getAddress().getCountry());
                 envio.setPedido(pedido); // Asociar el envío al pedido
-
+                envio.setEstadoEnvio("pendiente"); // Estado inicial del envío
+                envio.setEstado("pendiente"); // Estado inicial del envío
+                
                 // Guardar el envío explícitamente
                 envioRepository.save(envio); // Guardar el envío explícitamente
                 pedido.setEnvio(envio); // Asociar el envío al pedido
