@@ -9,23 +9,28 @@
 <body>
     <header>
         <h1>Gestión de Productos</h1>
+        <nav>
+            <a href="/envios/">Gestionar envios</a>
+            <a href="/">Salir</a>
+        </nav>
     </header>
 
     <section class="acciones">
         <button class="btn" onclick="mostrarFormulario()">Agregar Producto</button>
     </section>
-
-    <section id="formulario-producto" class="formulario-oculto">
-        <h2 id="titulo-formulario">Agregar Producto</h2>
-        <input type="number" id="editando-id" placeholder="codigo de barras">
-        <input type="text" id="Marca" placeholder="Marca del producto" required>
-        <input type="text" id="nombre" placeholder="Nombre del producto" required>
-        <input type="number" id="precio" placeholder="Precio" required>
-        <input type="number" id="stock" placeholder="Stock" required>
-        <input type="file" id="foto" accept="image/*">
-        <button onclick="guardarProducto()">Guardar</button>
-        <button onclick="cancelarEdicion()">Cancelar</button>
-    </section>
+    <div style="display: flex; justify-content: ;center; align-items: center; flex-direction: column;">
+        <section id="formulario-producto" class="formulario-oculto" width="20%">
+            <h2 id="titulo-formulario">Agregar Producto</h2>
+            <input type="number" id="editando-id" placeholder="codigo de barras">
+            <input type="text" id="Marca" placeholder="Marca del producto" required>
+            <input type="text" id="nombre" placeholder="Nombre del producto" required>
+            <input type="number" id="precio" placeholder="Precio" required>
+            <input type="number" id="stock" placeholder="Stock" required>
+            <input type="file" id="foto" accept="image/*">
+            <button onclick="guardarProducto()">Guardar</button>
+            <button onclick="cancelarEdicion()">Cancelar</button>
+        </section>
+    </div>
 
     <section class="lista-productos">
         <h2>Lista de Productos</h2>

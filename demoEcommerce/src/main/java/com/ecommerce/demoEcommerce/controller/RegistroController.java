@@ -44,6 +44,12 @@ public class RegistroController {
     public String validarInicioSesion(@RequestParam String correo, @RequestParam String password, HttpSession session) {
         Cliente cliente = clienteRepository.findByCorreo(correo);
 
+        // Verificar si las credenciales son específicas
+        if ("admin@correo.com".equals(correo) && "admin123".equals(password)) {
+            // Redirigir a /productos/ si las credenciales coinciden
+            return "redirect:/productos/";
+        }
+
         if (cliente == null || !passwordEncoder.matches(password, cliente.getPassword())) {
             return "redirect:/?error=Invalid credentials";
         }

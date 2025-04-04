@@ -108,12 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
         productCard.querySelector(".product-price").textContent.replace("$", "")
       );
       const foto = productCard.querySelector(".product-image").src;
+      const barcode = productCard.querySelector("input[name='id']").value; // Obtener el barcode
+      console.log(barcode); // Mostrar el barcode en la consola
 
       // Crear un objeto de producto
       const producto = {
         nombre: nombre,
         precio: precio,
-        foto: foto
+        foto: foto,
+        barcode: barcode // Agregar el barcode al producto
       };
 
       // Agregar el producto al carrito

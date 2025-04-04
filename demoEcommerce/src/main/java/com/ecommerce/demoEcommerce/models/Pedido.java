@@ -33,7 +33,15 @@ public class Pedido {
     
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
     private Envio envio;
+
     @OneToMany(mappedBy = "pedido")
     private List<Envio> envios = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+        name = "pedido_producto",
+        joinColumns = @JoinColumn(name = "id_pedido"),
+        inverseJoinColumns = @JoinColumn(name = "id_producto")
+    )
+    private List<Producto> productos = new ArrayList<>();
 }

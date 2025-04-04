@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface EnvioRepository extends JpaRepository<Envio, Integer> {
-    List<Envio> findByEstado(String estado);
+    List<Envio> findByEstado(String estado);  
 }

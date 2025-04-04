@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/api/stripe")
@@ -22,6 +23,9 @@ public class StripeController {
 
     @Value("${app.base-url}")
     private String baseUrl;
+
+    // Variable estática para almacenar los productos seleccionados
+    private static final Map<String, List<Map<String, Object>>> productosTemporales = new ConcurrentHashMap<>();
 
     @PostMapping("/create-checkout-session")
     public ResponseEntity<Map<String, String>> createCheckoutSession(@RequestBody List<Map<String, Object>> cart) {
@@ -78,6 +82,9 @@ public class StripeController {
 
             Session session = Session.create(params);
 
+            // Guardar los productos seleccionados en la variable estática
+            guardarProductosTemporales(session.getId(), cart);
+
             // Registrar logs
             System.out.println("Carrito recibido: " + cart);
             System.out.println("Sesión creada con ID: " + session.getId());
@@ -89,5 +96,18 @@ public class StripeController {
             e.printStackTrace();
             return ResponseEntity.status(500).body(Map.of("error", e.getMessage()));
         }
+    }
+
+    // Método para guardar productos seleccionados temporalmente
+    private static void guardarProductosTemporales(String sessionId, List<Map<String, Object>> cart) {
+        productosTemporales.put(sessionId, cart);
+        System.out.println("Productos guardados para session_id: " + sessionId + " -> " + cart);
+    }
+
+    // Método para recuperar productos seleccionados temporalmente
+    public static List<Map<String, Object>> recuperarProductosTemporales(String sessionId) {
+        List<Map<String, Object>> productos = productosTemporales.get(sessionId);
+        System.out.println("Productos recuperados para session_id: " + sessionId + " -> " + productos);
+        return productos;
     }
 }

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Pedidos</title>
+    <link rel="stylesheet" href="/css/ecommerce.css">
+    <link rel="stylesheet" href="/css/mispedidos.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+          <div class="header-content">
+            <div class="logo-container">
+              <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+              </button>
+              <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">Shop Express</span>
+              </a>
+            </div>
+            
+            <div class="header-actions">
+              <button class="icon-button" aria-label="Home" onclick="window.location.href='/ecommerce/'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </button>
+              <button class="icon-button" aria-label="Mis Pedidos" onclick="window.location.href='#'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="content">
+        <main class="contenedor-pedidos">
+            <h1 class="titulo">Mis Pedidos</h1>
+
+            <div th:each="pedido : ${pedidos}" class="pedido" th:data-pedido-id="${pedido.idPedido}">
+                <h2 class="id-pedido">Pedido #<span th:text="${pedido.idPedido}"></span></h2>
+                <p>Fecha: <span th:text="${pedido.fecha}"></span></p>
+                <p>Estado del Pedido: <span th:text="${pedido.estado}"></span></p>
+                <p>Monto Total: $<span th:text="${pedido.montoTotal}"></span></p>
+
+                <div class="envio">
+                    <h3>Información de Envío</h3>
+                    <p>Dirección: <span th:text="${pedido.envio.direccion}"></span></p>
+                    <p>Ciudad: <span th:text="${pedido.envio.ciudad}"></span></p>
+                    <p>Estado: <span th:text="${pedido.envio.estado}"></span></p>
+                    <p>Código Postal: <span th:text="${pedido.envio.codigoPostal}"></span></p>
+                    <p>País: <span th:text="${pedido.envio.pais}"></span></p>
+                    <p>Estado del Envío: <span th:text="${pedido.envio.estadoEnvio}"></span></p>
+                </div>
+
+                <div class="productos">
+                    <div th:each="producto : ${pedido.productos}" class="producto">
+                        <div class="imagen-producto">
+                            <img th:src="${producto.foto}" alt="Imagen del producto">
+                        </div>
+                        <div class="info-producto">
+                            <h3 th:text="${producto.nombre}"></h3>
+                            <p>Cantidad: <span th:text="${producto.stock}"></span></p>
+                            <p>Precio: $<span th:text="${producto.precio}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+      </div>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-column">
+              <h3 class="footer-title">Shop</h3>
+              <ul class="footer-links">
+                <li><a href="#" class="footer-link">New Arrivals</a></li>
+                <li><a href="#" class="footer-link">Best Sellers</a></li>
+                <li><a href="#" class="footer-link">Sale</a></li>
+                <li><a href="#" class="footer-link">All Products</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3 class="footer-title">About</h3>
+              <ul class="footer-links">
+                <li><a href="#" class="footer-link">Our Story</a></li>
+                <li><a href="#" class="footer-link">Sustainability</a></li>
+                <li><a href="#" class="footer-link">Careers</a></li>
+                <li><a href="#" class="footer-link">Press</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3 class="footer-title">Support</h3>
+              <ul class="footer-links">
+                <li><a href="#" class="footer-link">FAQ</a></li>
+                <li><a href="#" class="footer-link">Shipping & Returns</a></li>
+                <li><a href="#" class="footer-link">Contact Us</a></li>
+                <li><a href="#" class="footer-link">Privacy Policy</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h3 class="footer-title">Connect</h3>
+              <ul class="footer-links">
+                <li><a href="#" class="footer-link">Instagram</a></li>
+                <li><a href="#" class="footer-link">Twitter</a></li>
+                <li><a href="#" class="footer-link">Facebook</a></li>
+                <li><a href="#" class="footer-link">Pinterest</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <div class="footer-logo">
+              <div class="logo-circle-small"></div>
+              <span class="logo-text">Shop Express</span>
+            </div>
+            <p class="copyright">© 2025 ShopExpress. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>

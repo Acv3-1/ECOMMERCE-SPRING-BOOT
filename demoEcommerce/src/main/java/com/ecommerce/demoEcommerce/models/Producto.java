@@ -2,6 +2,8 @@ package com.ecommerce.demoEcommerce.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "productos")
@@ -24,4 +26,7 @@ public class Producto {
 
     @Column(name = "foto", length = 255) // Longitud máxima de la ruta
     private String foto;
+
+    @ManyToMany(mappedBy = "productos")
+    private List<Pedido> pedidos = new ArrayList<>();
 }

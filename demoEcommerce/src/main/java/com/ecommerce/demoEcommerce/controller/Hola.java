@@ -2,8 +2,14 @@ package com.ecommerce.demoEcommerce.controller;
 //import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ecommerce.demoEcommerce.repository.ClienteRepository;
+import com.ecommerce.demoEcommerce.repository.EnvioRepository;
+import com.ecommerce.demoEcommerce.repository.PedidoRepository;
 import com.ecommerce.demoEcommerce.repository.ProductoRepository;
 import com.ecommerce.demoEcommerce.models.Cliente;
+import com.ecommerce.demoEcommerce.models.Envio;
+import com.ecommerce.demoEcommerce.models.Pedido;
 import com.ecommerce.demoEcommerce.models.Producto;
 
 import java.util.List;
@@ -17,6 +23,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class Hola {
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
     @GetMapping("/")
     public String hola(){
         return "login";
@@ -33,10 +42,15 @@ public class Hola {
     public String pedidos() {
         return "pedidos";
     }
+    @Autowired
+    private EnvioRepository envioRepository;
     @GetMapping("/envios/")
-    public String envios() {
+    public String envios(Model model) {
+        List<Envio> envio = envioRepository.findAll();
+        model.addAttribute("envios", envio); // Pasa los envios al modelo
         return "envios";
-    }@Autowired
+    }
+    @Autowired
     private ProductoRepository productoRepository;
     @GetMapping("/productos/")
     public String productos(Model model) {
@@ -63,6 +77,26 @@ public class Hola {
         model.addAttribute("productos", productoRepository.findAll()); // Obtener todos los productos y pasarlos al modelo
 
         return "ecommerce"; // Renderiza la vista ecommerce.html
+    }
+    @GetMapping("/mispedidos/")
+    public String mispedidos(HttpSession session, Model model) {
+        // Recuperar el usuario de la sesión
+        Cliente cliente = (Cliente) session.getAttribute("usuario");
+
+        if (cliente == null) {
+            return "redirect:/?error=No session found"; // Redirige si no hay sesión
+        }
+
+        // Obtener los pedidos asociados al cliente
+        List<Pedido> pedidos = pedidoRepository.findByCliente_CcCliente(cliente.getCcCliente());
+
+        // Pasar los pedidos al modelo
+        model.addAttribute("pedidos", pedidos);
+
+        // Pasar los datos del usuario al modelo
+        model.addAttribute("usuario", cliente);
+
+        return "mispedidos"; // Renderiza la vista mispedidos.html
     }
     @GetMapping("/success")
     public String success(@RequestParam("session_id") String sessionId, Model model) {

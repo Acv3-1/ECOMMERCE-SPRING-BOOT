@@ -1,76 +1,49 @@
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarEnvios();
-});
+function entregarEnvio(button) {
+    // Obtener los valores de data-id y data-estado del botón
+    const idEnvio = button.getAttribute('data-id');
+    const estadoActual = button.getAttribute('data-estado');
 
-let envios = [
-    { id: 1, pedidoId: 1001, transportista: "DHL", estado: "En preparación" },
-    { id: 2, pedidoId: 1002, transportista: "FedEx", estado: "Enviado" }
-];
+    console.log("ID Envío:", idEnvio);
+    console.log("Estado Actual:", estadoActual);
 
-function mostrarEnvios() {
-    const tabla = document.getElementById("tabla-envios");
-    tabla.innerHTML = "";
-    envios.forEach((envio, index) => {
-        tabla.innerHTML += `
-            <tr>
-                <td>${envio.id}</td>
-                <td>${envio.pedidoId}</td>
-                <td>${envio.transportista}</td>
-                <td>${envio.estado}</td>
-                <td>
-                    <button class="editar" onclick="editarEnvio(${index})">Editar</button>
-                    <button class="eliminar" onclick="eliminarEnvio(${index})">Eliminar</button>
-                </td>
-            </tr>
-        `;
+    // Determinar el siguiente estado basado en el estado actual
+    let nuevoEstado;
+    if (estadoActual === "pendiente") {
+        nuevoEstado = "En proceso";
+    } else if (estadoActual === "En proceso") {
+        nuevoEstado = "Entregado";
+    } else {
+        alert("El envío ya está en el estado final.");
+        return;
+    }
+
+    // Crear el cuerpo de la solicitud con el nuevo estado
+    const data = {
+        id: parseInt(idEnvio),
+        estado: nuevoEstado
+    };
+
+    // Realizar la petición fetch al backend
+    fetch(`/api/envios/actualizarEstado/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // Convertir el objeto a JSON
+    })
+    .then(response => {
+        if (response.ok) {
+            alert(`El estado del envío ha sido actualizado a: ${nuevoEstado}.`);
+            location.reload(); // Recargar la página para actualizar la tabla
+        } else {
+            return response.json().then(error => {
+                throw new Error(error.message || 'Error al actualizar el estado del envío.');
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un problema al procesar la solicitud.');
     });
 }
 
-function mostrarFormulario() {
-    document.getElementById("formulario-envio").style.display = "block";
-    document.getElementById("titulo-formulario").textContent = "Registrar Envío";
-    document.getElementById("editando-id").value = "";
-    document.getElementById("pedido-id").value = "";
-    document.getElementById("transportista").value = "";
-    document.getElementById("estado").value = "En preparación";
-}
-
-function guardarEnvio() {
-    const id = document.getElementById("editando-id").value;
-    const pedidoId = document.getElementById("pedido-id").value;
-    const transportista = document.getElementById("transportista").value;
-    const estado = document.getElementById("estado").value;
-
-    if (pedidoId && transportista && estado) {
-        if (id) {
-            const index = envios.findIndex(e => e.id == id);
-            envios[index] = { id: parseInt(id), pedidoId, transportista, estado };
-        } else {
-            const nuevoId = envios.length ? envios[envios.length - 1].id + 1 : 1;
-            envios.push({ id: nuevoId, pedidoId, transportista, estado });
-        }
-        mostrarEnvios();
-        cancelarEdicion();
-    } else {
-        alert("Todos los campos son obligatorios.");
-    }
-}
-
-function editarEnvio(index) {
-    const envio = envios[index];
-    document.getElementById("formulario-envio").style.display = "block";
-    document.getElementById("titulo-formulario").textContent = "Editar Envío";
-    document.getElementById("editando-id").value = envio.id;
-    document.getElementById("pedido-id").value = envio.pedidoId;
-    document.getElementById("transportista").value = envio.transportista;
-    document.getElementById("estado").value = envio.estado;
-}
-
-function eliminarEnvio(index) {
-    envios.splice(index, 1);
-    mostrarEnvios();
-}
-
-function cancelarEdicion() {
-    document.getElementById("formulario-envio").style.display = "none";
-}

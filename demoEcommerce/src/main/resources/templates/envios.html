@@ -9,26 +9,11 @@
 <body>
     <header>
         <h1>Gestión de Envíos</h1>
+        <nav>
+            <a href="/ecommerce/">Gestionar productos</a>
+            <a href="/">Salir</a>
+        </nav>
     </header>
-
-    <section class="acciones">
-        <button class="btn" onclick="mostrarFormulario()">Registrar Envío</button>
-    </section>
-
-    <section id="formulario-envio" class="formulario-oculto">
-        <h2 id="titulo-formulario">Registrar Envío</h2>
-        <input type="hidden" id="editando-id">
-        <input type="text" id="pedido-id" placeholder="ID del Pedido" required>
-        <input type="text" id="transportista" placeholder="Transportista" required>
-        <select id="estado">
-            <option value="En preparación">En preparación</option>
-            <option value="Enviado">Enviado</option>
-            <option value="Entregado">Entregado</option>
-        </select>
-        <button onclick="guardarEnvio()">Guardar</button>
-        <button onclick="cancelarEdicion()">Cancelar</button>
-    </section>
-
     <section class="lista-envios">
         <h2>Lista de Envíos</h2>
         <table>
@@ -36,13 +21,33 @@
                 <tr>
                     <th>ID Envío</th>
                     <th>ID Pedido</th>
-                    <th>Transportista</th>
+                    <th>Ciudad</th>
+                    <th>Codigo postal</th>
                     <th>Estado</th>
-                    <th>Acciones</th>
+                    <th>Asignar Estado</th>
                 </tr>
             </thead>
-            <tbody id="tabla-envios">
-                <!-- Aquí se insertarán los envíos dinámicamente -->
+            <tbody>
+                <!-- Generar filas dinámicamente con Thymeleaf -->
+                <tr th:each="envio : ${envios}" th:if="${envio.estado != 'Entregado'}">
+                    <td th:text="${envio.idEnvio}"></td>
+                    <td th:text="${envio.pedido.idPedido}"></td>
+                    <td th:text="${envio.ciudad}"></td>
+                    <td th:text="${envio.codigoPostal}"></td>
+                    <td th:text="${envio.estadoEnvio}"></td>
+                    <td>
+                        <button th:if="${envio.estado == 'pendiente'}"
+                                th:data-id="${envio.idEnvio}"
+                                th:data-estado="${envio.estado}"
+                                onclick="entregarEnvio(this)"
+                                class="btn">Despachar</button>
+                        <button th:if="${envio.estado == 'En proceso'}"
+                        th:data-id="${envio.idEnvio}"
+                        th:data-estado="${envio.estado}"
+                                onclick="entregarEnvio(this)"
+                                class="btn">Entregar</button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </section>
